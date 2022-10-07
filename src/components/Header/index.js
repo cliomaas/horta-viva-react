@@ -1,4 +1,4 @@
-import { Box, Divider, Hidden, Typography, withTheme } from "@mui/material";
+import { Box, Divider, Typography } from "@mui/material";
 import React from "react";
 import Image from '../../Images/background.png';
 import { ReactComponent as Saiba } from '../../Images/svg/Saiba.svg'

@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import { Box, Button, Divider, Typography } from '@mui/material';
 import React from 'react';
 import LoginModal from '../../components/Login';
 import ResponsiveMenu from '../../components/Nav';
@@ -13,14 +13,13 @@ const Home = () => {
         setOpen(!open)
     }
 
-    console.log(useTheme())
     return (
         <div>
             <div>
                 <ResponsiveMenu handleClose={handleClose} />
                 <LoginModal handleClose={handleClose} open={open} />
                 <Header></Header>
-                <FlexBox direction={{ md: 'row', xs: 'column' }} justify='space-around' padding={{ xd: 'auto', md: '210px' }}>
+                <FlexBox direction={{ md: 'row', xs: 'column' }} justify='space-around' padding={{ xs: 'auto', md: '210px' }}>
 
                     <CardInfo margin={{ xs: 80, md: 85 }} number='01'
                         description="Cadastre-se em nossa plataforma e comece a desfrutar de nossos benefícios." />
@@ -30,6 +29,33 @@ const Home = () => {
                     <CardInfo margin={{ xs: 3, md: 85 }} number='03'
                         description="Ajude famílias produtoras de alimentos organicos promovendo consumo sustentável."
                     />
+                </FlexBox>
+                <FlexBox direction={{ md: 'row', xs: 'column-reverse' }} align='center' background='primary.light' padding={{ xs: '30px', md: '210px' }} py={8}>
+                    <FlexBox direction='column' sx={{ flexGrow: 2 }} padding={{}} align='center'>
+                        <Typography align="left" variant='h2' component='h2' color='primary.main' sx={{ fontWeight: 800, maxWidth: '700px', fontSize: { xs: '24px', md: '60px' }, textAlign: { xs: 'center', md: 'left' } }}>
+                            Uma forma de deixar a sociedade mais colorida e saborosa.
+                            <Divider orientation='horizontal' color="primary.main" sx={{
+                                borderColor: 'primary.main',
+                                margin: '0 auto',
+                                mb: 3,
+                                mt: 2
+                            }}></Divider>
+                        </Typography>
+                        < Typography variant="h4" component="h4" align="left" color='primary.main' sx={{
+                            fontWeight: 500,
+                            fontSize: { xs: '14px', md: '32px' }, textAlign: { xs: 'center', md: 'left' }
+                        }}>
+                            Veja algumas opções que temos prontas para seus colaboradores.
+                        </Typography>
+                        <Button sx={[{ backgroundColor: 'secondary.main', color: 'primary', fontWeight: '700', fontSize: { xs: '14px', md: '24px' }, borderRadius: '30px', width: '50%', mt: 3 }, {
+                            '&:hover': {
+                                backgroundColor: 'primary.main',
+                                color: 'primary.light'
+                            }
+                        }]}>Veja Mais</Button>
+                    </FlexBox>
+                    <img alt="cesta de frutas" src={require('../../Images/fruits.png')} width={795} height={'auto'} style={{ width: '50%' }} />
+
                 </FlexBox>
             </div>
         </ div >

@@ -1,3 +1,26 @@
+
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  * {
+    scrollbar-width: auto;
+    scrollbar-color: rgba(67, 115, 70, .5) #ffffff;
+    
+  }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: rgba(100,100,100, .1);
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #437346;
+    border-radius: 10px;
+    border: 0px solid #ffffff;
+  }
 .App {
   text-align: center;
 }
@@ -15,6 +38,7 @@
 
 body{
   overflow-x: hidden;
+  overflow: overlay;
 }
 .App-header {
   background-color: #282c34;
