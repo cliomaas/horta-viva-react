@@ -19,7 +19,7 @@ const Header = () => {
             pt: 20,
             backgroundRepeat: 'no-repeat',
             pb: 8,
-            px: { md: '210px' },
+            px: { xs: '20px', md: '210px' },
             boxSizing: 'border-box',
         },
         titleStyle: {

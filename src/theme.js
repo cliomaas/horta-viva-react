@@ -12,6 +12,9 @@ export const theme = createTheme({
         secondary: {
             main: "#F2A950",
         },
+        gray: {
+            600: '#666666'
+        },
         header: {
             main: "rgba(255, 255, 255, 0.9)"
         }
@@ -19,6 +22,7 @@ export const theme = createTheme({
     typography: {
         fontFamily: '"Montserrat","Helvetica","Arial",sans-serif'
     },
+    shadows: [...createTheme({}).shadows, ' 0px 4px 35px rgba(0, 0, 0, 0.18)'],
     components: {
         MuiButton: {
             styleOverrides: {
