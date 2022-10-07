@@ -1,7 +1,7 @@
 import { Box, Divider, Hidden, Typography, withTheme } from "@mui/material";
 import React from "react";
 import Image from '../../Images/background.png';
-
+import { ReactComponent as Saiba } from '../../Images/svg/Saiba.svg'
 
 const Header = () => {
 
@@ -14,10 +14,13 @@ const Header = () => {
             zIndex: -1000,
             width: '100vw',
             height: 'auto',
+            backgroundPosition: '0% 100%',
+            backgroundSize: 'cover',
             pt: 20,
             backgroundRepeat: 'no-repeat',
-            pb: 100,
-            overflowX: 'hidden'
+            pb: 8,
+            px: { md: '210px' },
+            boxSizing: 'border-box',
         },
         titleStyle: {
             fontWeight: 800,
@@ -26,7 +29,7 @@ const Header = () => {
                 xs: '24px',
                 md: '60px'
             },
-            pb: 3
+            pb: 3,
         },
         dividerStyle: {
             borderColor: 'white',
@@ -44,6 +47,7 @@ const Header = () => {
             <Typography sx={styles.titleStyle} variant="h3" component="h3">Como cultivar mais saúde e sustentabilidade para seus colaboradores?</Typography>
             <Divider sx={styles.dividerStyle} variant="middle" />
             <Typography sx={styles.description} variant="h6" component="h6">Nós da Horta-Viva temos a solução para introduzir a sua empresa na cultura ESG e desenvolver formas de incentivar seus colaboradores!</Typography>
+            <Saiba style={{ marginTop: '40px' }} />
         </Box>
     )
 }
