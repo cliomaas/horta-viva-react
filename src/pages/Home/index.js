@@ -6,6 +6,8 @@ import Header from '../../components/Header';
 import CardInfo from '../../components/Card';
 import { useTheme } from '@mui/material';
 import FlexBox from '../../components/FlexBox';
+import ContactForm from '../../components/Contact';
+import SvgCiclico from '../../Images/components/Ciclico'
 const Home = () => {
     const [open, setOpen] = React.useState(false)
 
@@ -19,6 +21,7 @@ const Home = () => {
                 <ResponsiveMenu handleClose={handleClose} />
                 <LoginModal handleClose={handleClose} open={open} />
                 <Header></Header>
+                {/* CARDS INFORMATIVOS */}
                 <FlexBox direction={{ md: 'row', xs: 'column' }} justify='space-around' padding={{ xs: 'auto', md: '210px' }}>
 
                     <CardInfo margin={{ xs: 80, md: 85 }} number='01'
@@ -30,6 +33,7 @@ const Home = () => {
                         description="Ajude famílias produtoras de alimentos organicos promovendo consumo sustentável."
                     />
                 </FlexBox>
+                {/* TEXTO INTERMEDIARIO */}
                 <FlexBox direction={{ md: 'row', xs: 'column-reverse' }} align='center' background='primary.light' padding={{ xs: '30px', md: '210px' }} py={8}>
                     <FlexBox direction='column' sx={{ flexGrow: 2 }} padding={{}} align='center'>
                         <Typography align="left" variant='h2' component='h2' color='primary.main' sx={{ fontWeight: 800, maxWidth: '700px', fontSize: { xs: '24px', md: '60px' }, textAlign: { xs: 'center', md: 'left' } }}>
@@ -56,6 +60,16 @@ const Home = () => {
                     </FlexBox>
                     <img alt="cesta de frutas" src={require('../../Images/fruits.png')} width={795} height={'auto'} style={{ width: '50%' }} />
 
+                </FlexBox>
+                {/* CONTATO */}
+                <FlexBox direction={{ md: 'row', xs: 'column' }} justify='space-around' padding={{ xs: 'auto', md: '210px' }} py={8}>
+                    <FlexBox direction='column' align='center'>
+                        <SvgCiclico width={200} height={200} />
+                        <Typography color='primary.main' sx={{ fontWeight: 800, fontSize: { xs: '24px', md: '60px' }, mb: 3 }}>
+                            Interessado nessa transformação?
+                        </Typography>
+                    </FlexBox>
+                    <ContactForm />
                 </FlexBox>
             </div>
         </ div >

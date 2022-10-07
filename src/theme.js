@@ -31,10 +31,10 @@ export const theme = createTheme({
                     textTransform: 'none'
                 },
                 outlined: {
-                    border: '2px solid #437346',
+                    border: '1px solid #437346',
                     textTransform: 'none',
                     '&:hover': {
-                        border: '2px solid #437346'
+                        border: '1px solid #437346'
                     }
                 },
 
