@@ -17,6 +17,9 @@ export const theme = createTheme({
         },
         header: {
             main: "rgba(255, 255, 255, 0.9)"
+        },
+        whiteFooter: {
+            main: "#FFF"
         }
     },
     typography: {
