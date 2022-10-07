@@ -1,0 +1,10 @@
+export { default as Acordo } from "./Acordo";
+export { default as Carrinho } from "./Carrinho";
+export { default as Ciclico } from "./Ciclico";
+export { default as Coracao } from "./Coracao";
+export { default as Escrita } from "./Escrita";
+export { default as Estrela } from "./Estrela";
+export { default as Folha } from "./Folha";
+export { default as Lampada } from "./Lampada";
+export { default as Localizacao } from "./Localizacao";
+export { default as Telefone } from "./Telefone";
