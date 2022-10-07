@@ -13,12 +13,14 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import { LoginContext } from '../../contexts/loginContext';
 
 
 const pages = ['Loja', 'Como funciona', 'Login'];
 const settings = ['Meu Perfil', 'Logout'];
 
 const ResponsiveMenu = ({ handleClose }) => {
+    const { logged, setLogged } = React.useContext(LoginContext);
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
     const [anchorElLogin, setAnchorElLogin] = React.useState(null);
@@ -33,6 +35,11 @@ const ResponsiveMenu = ({ handleClose }) => {
         setAnchorElLogin(event.currentTarget);
     };
 
+    const handleLogout = (setting) => {
+        if (setting === 'Logout') {
+            setLogged(false)
+        }
+    }
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
     };
@@ -44,8 +51,6 @@ const ResponsiveMenu = ({ handleClose }) => {
     const handleCloseLoginMenu = () => {
         setAnchorElLogin(null);
     };
-
-    const isLoggedIn = false;
 
     return (
         < AppBar position="static" color={'header'} >
@@ -83,7 +88,7 @@ const ResponsiveMenu = ({ handleClose }) => {
                         >
                             {pages.map((page) => (
                                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography color={'primary'} onClick={handleClose} textAlign="center" sx={{ fontWeight: '600', textTransform: 'uppercase' }}>{page}</Typography>
+                                    <Typography color={'primary'} onClick={() => handleClose(page)} textAlign="center" sx={{ fontWeight: '600', textTransform: 'uppercase' }}>{page}</Typography>
                                 </MenuItem>
                             ))}
                             <MenuItem>
@@ -163,7 +168,7 @@ const ResponsiveMenu = ({ handleClose }) => {
 
                     {/* PROFILE */}
                     <Box sx={{ flexGrow: 0, marginRight: { md: '210px' } }}>
-                        {isLoggedIn ? <Tooltip title="Open settings">
+                        {logged ? <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
                             </IconButton>
@@ -208,7 +213,7 @@ const ResponsiveMenu = ({ handleClose }) => {
                         >
                             {settings.map((setting) => (
                                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                    <Typography textAlign="center">{setting}</Typography>
+                                    <Typography onClick={() => handleLogout(setting)} textAlign="center">{setting}</Typography>
                                 </MenuItem>
                             ))}
                         </Menu>

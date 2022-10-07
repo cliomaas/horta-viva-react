@@ -12,14 +12,16 @@ import Footer from '../../components/Footer';
 const Home = () => {
     const [open, setOpen] = React.useState(false)
 
-    const handleClose = () => {
-        setOpen(!open)
+    const handleClose = (page) => {
+        if (page.target.innerText === 'Login') {
+            setOpen(!open)
+        }
     }
 
     return (
         <div>
             <ResponsiveMenu handleClose={handleClose} />
-            <LoginModal handleClose={handleClose} open={open} />
+            <LoginModal handleClose={handleClose} open={open} setOpen={setOpen} />
             <Header></Header>
             {/* CARDS INFORMATIVOS */}
             <FlexBox direction={{ md: 'row', xs: 'column' }} justify='space-around' padding={{ xs: 'auto', md: '210px' }}>

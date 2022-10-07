@@ -1,17 +1,19 @@
 import { Box, Button, Modal, TextField, Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import React from 'react';
+import { LoginContext } from '../../contexts/loginContext';
 
 const LoginModal = (props) => {
-    const { handleClose, open } = props
+    const { open, setOpen } = props
     const [email, setEmail] = React.useState('')
+    const { setLogged } = React.useContext(LoginContext);
 
     const boxStyle = {
         position: 'absolute',
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        width: 600,
+        width: { xs: 'auto', md: 600 },
         bgcolor: 'background.paper',
         borderRadius: '40px',
         boxShadow: 2,
@@ -53,7 +55,6 @@ const LoginModal = (props) => {
     const handleSelect = (e) => {
         e.target.style.backgroundColor = '#437346'
         e.target.style.color = 'white'
-        console.log(e.target.innerText)
         const category = e.target.innerText
         switch (category) {
             case 'Sou Colaborador':
@@ -70,12 +71,14 @@ const LoginModal = (props) => {
         }
     }
 
+    const handleButton = () => {
+        setOpen(!open)
+    }
     const handleSubmit = (e) => {
         const emailStorage = localStorage.getItem("email")
         const passwordStorage = localStorage.getItem("senha")
 
         const input = email
-        console.log(email)
         if (!email) {
             alert('Preencha as informações corretamente')
         } else {
@@ -84,6 +87,7 @@ const LoginModal = (props) => {
             }
             else {
                 alert('Usuário autenticado')
+                setLogged(true);
             }
         }
     }
@@ -92,12 +96,15 @@ const LoginModal = (props) => {
         <>
             <Modal
                 open={open}
-                onClose={handleClose}
+                onClose={handleButton}
                 aria-labelledby="modal-login"
                 aria-describedby="modal-description"
+                sx={{
+                    mx: { xs: '30px' }
+                }}
             >
                 <Box sx={boxStyle}>
-                    <CloseIcon onClick={handleClose} sx={{ cursor: 'pointer' }} />
+                    <CloseIcon onClick={handleButton} sx={{ cursor: 'pointer' }} />
                     <Typography sx={[titleStyle, { fontWeight: 400 }]} id="modal-modal-title" variant="h6" component="h3">
                         Login
                     </Typography>
