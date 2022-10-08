@@ -91,7 +91,7 @@ const ResponsiveMenu = ({ handleCloseLogin, handleCloseRegister }) => {
                         >
                             {pages.map((page) => (
                                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography color={'primary'} onClick={() => handleCloseLogin(page)} textAlign="center" sx={{ fontWeight: '600', textTransform: 'uppercase' }}>{page}</Typography>
+                                    <Typography color={'primary'} onClick={() => handleCloseLogin(page)} textAlign="center" sx={{ fontWeight: '600', textTransform: 'none' }}>{page}</Typography>
                                 </MenuItem>
                             ))}
                             <MenuItem>
