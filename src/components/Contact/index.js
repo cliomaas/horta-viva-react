@@ -8,9 +8,7 @@ const ContactForm = () => {
     const [nameForm, setNameForm] = React.useState('')
     const [telForm, setTelForm] = React.useState('')
     return (
-        <Card variant="outlined" sx={{
-            border: '1px solid #437346'
-        }}>
+        <Card variant="outlined" sx={{ border: '1px solid', borderColor: 'primary.main', borderRadius: '50px', p: 5 }}>
             <CardContent>
                 <Typography color='primary.main' sx={{
                     fontSize: { xs: '16px', md: '32px' },

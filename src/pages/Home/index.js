@@ -54,7 +54,7 @@ const Home = () => {
 
             </FlexBox>
             {/* CONTATO */}
-            <FlexBox direction={{ md: 'row', xs: 'column' }} justify='space-around' padding={{ xs: '30px', md: '210px' }} py={8} gap={2}>
+            <FlexBox direction={{ md: 'row', xs: 'column' }} justify='space-around' align='center' padding={{ xs: '30px', md: '210px' }} py={8} gap={2}>
                 <FlexBox direction='column' align='center'>
                     <SvgCiclico width={200} height={200} />
                     <Typography color='primary.main' sx={{ fontWeight: 800, fontSize: { xs: '24px', md: '60px' }, mb: 3 }}>
