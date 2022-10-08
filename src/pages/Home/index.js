@@ -1,15 +1,11 @@
-import { Box, Button, Divider, Typography } from '@mui/material';
+import { Button, Divider, Typography } from '@mui/material';
 import React from 'react';
-import LoginModal from '../../components/Login';
-import ResponsiveMenu from '../../components/Nav';
 import Hero from '../../components/Hero';
 import CardInfo from '../../components/Card';
-import { useTheme } from '@mui/material';
 import FlexBox from '../../components/FlexBox';
 import ContactForm from '../../components/Contact';
 import SvgCiclico from '../../Images/components/Ciclico'
 import Footer from '../../components/Footer';
-import RegisterModal from '../../components/Register';
 import Header from '../../components/Header';
 const Home = () => {
 

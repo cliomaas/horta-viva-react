@@ -26,14 +26,6 @@ const RegisterModal = (props) => {
         p: 4,
     };
 
-    const boxFlexHorizontalStyle = {
-        mt: 2,
-        display: 'flex',
-        justifyContent: 'center',
-        gap: 3
-
-    };
-
     const boxFlexVerticalStyle = {
         mt: 2,
         display: 'flex',
@@ -63,7 +55,7 @@ const RegisterModal = (props) => {
     }
     const handleSubmit = (e) => {
         console.log(nome, nascimento, email, senha, categoria)
-        if (nome != '' & nascimento != '' & email != '' & categoria != '' & senha != '') {
+        if (nome !== '' & nascimento !== '' & email !== '' & categoria !== '' & senha !== '') {
             localStorage.setItem('nome', nome)
             localStorage.setItem('email', email)
             localStorage.setItem('senha', senha)
@@ -72,7 +64,7 @@ const RegisterModal = (props) => {
 
             setOpen(!open)
         } else {
-            alert("stop")
+            alert("Preencha todas as informações")
         }
     }
 

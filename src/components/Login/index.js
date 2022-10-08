@@ -86,11 +86,11 @@ const LoginModal = (props) => {
         if (!email) {
             alert('Preencha as informações corretamente')
         } else {
-            if (!emailStorage || email != emailStorage) {
+            if (!emailStorage || email !== emailStorage) {
                 alert('Usuário não cadastrado')
             }
             else if (email === emailStorage) {
-                if (senha != senhaStorage) {
+                if (senha !== senhaStorage) {
                     alert('Usuário ou senha incorretos')
                 } else {
                     alert('Usuário autenticado')
