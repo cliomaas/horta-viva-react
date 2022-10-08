@@ -55,7 +55,7 @@ const RegisterModal = (props) => {
     }
     const handleSubmit = (e) => {
         console.log(nome, nascimento, email, senha, categoria)
-        if (nome !== '' & nascimento !== '' & email !== '' & categoria !== '' & senha !== '') {
+        if (nome != '' & nascimento != '' & email != '' & categoria != '' & senha != '') {
             localStorage.setItem('nome', nome)
             localStorage.setItem('email', email)
             localStorage.setItem('senha', senha)
@@ -64,7 +64,7 @@ const RegisterModal = (props) => {
 
             setOpen(!open)
         } else {
-            alert("Preencha todas as informações")
+            alert("stop")
         }
     }
 
