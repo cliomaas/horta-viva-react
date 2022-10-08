@@ -10,11 +10,11 @@ import { LoginProvider } from './contexts/loginContext';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <LoginProvider>
+    <LoginProvider>
+      <ThemeProvider theme={theme}>
         <App />
-      </LoginProvider>
-    </ThemeProvider>
+      </ThemeProvider>
+    </LoginProvider>
   </React.StrictMode>
 );
 
