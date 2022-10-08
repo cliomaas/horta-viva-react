@@ -13,7 +13,6 @@ const Header = () => {
         }
     }
     const handleCloseRegister = (page) => {
-        console.log('oxe')
         if (page.target.innerText === 'Cadastre-se') {
             setOpenRegister(!openRegister)
         }

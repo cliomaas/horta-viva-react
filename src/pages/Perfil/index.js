@@ -9,7 +9,6 @@ const Perfil = () => {
 
     const categoria = localStorage.getItem('categoria')
     const conditionalRendering = () => {
-        console.log(categoria)
         switch (categoria) {
             case 'colaborador':
                 return <Colaborador />;
