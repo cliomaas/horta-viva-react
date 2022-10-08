@@ -1,13 +1,19 @@
-import { Box, Button, Modal, TextField, Typography } from '@mui/material';
+import { Box, Button, IconButton, InputAdornment, Modal, TextField, Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import React from 'react';
 import { LoginContext } from '../../contexts/loginContext';
+import { Visibility } from '@mui/icons-material';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { useNavigate } from 'react-router-dom';
 
 const LoginModal = (props) => {
     const { open, setOpen } = props
     const [email, setEmail] = React.useState('')
+    const [senha, setSenha] = React.useState('')
     const { setLogged } = React.useContext(LoginContext);
-
+    const { showPassword, setShowPassword } = React.useContext(LoginContext);
+    const navigate = useNavigate();
+    const handleClickShowPassword = () => setShowPassword(!showPassword);
     const boxStyle = {
         position: 'absolute',
         top: '50%',
@@ -76,18 +82,22 @@ const LoginModal = (props) => {
     }
     const handleSubmit = (e) => {
         const emailStorage = localStorage.getItem("email")
-        const passwordStorage = localStorage.getItem("senha")
-
-        const input = email
+        const senhaStorage = localStorage.getItem("senha")
         if (!email) {
             alert('Preencha as informações corretamente')
         } else {
-            if (!emailStorage) {
+            if (!emailStorage || email != emailStorage) {
                 alert('Usuário não cadastrado')
             }
-            else {
-                alert('Usuário autenticado')
-                setLogged(true);
+            else if (email === emailStorage) {
+                if (senha != senhaStorage) {
+                    alert('Usuário ou senha incorretos')
+                } else {
+                    alert('Usuário autenticado')
+                    setLogged(true);
+                    navigate('/perfil')
+                    setOpen(!open)
+                }
             }
         }
     }
@@ -123,8 +133,28 @@ const LoginModal = (props) => {
                         </Button>
                     </Box>
                     <Box sx={boxFlexVerticalStyle}>
-                        <TextField fullWidth={true} onChange={e => setEmail(e.target.value)} value={email} id="outlined-search" label="Email" type="text" />
-                        <TextField fullWidth={true} id="outlined-search" label="Senha" type="password" />
+                        <TextField fullWidth={true} onChange={e => setEmail(e.target.value)} value={email} id="outlined-search" label="Email" type="email" />
+                        <TextField
+                            fullWidth={true}
+                            id="outlined-search"
+                            label='Senha'
+                            type={showPassword ? "text" : "password"}
+                            onChange={e => setSenha(e.target.value)}
+                            value={senha}
+                            sx={{ backgroundColor: 'transparent' }}
+                            InputProps={{
+                                endAdornment: (
+                                    <InputAdornment position="end">
+                                        <IconButton
+                                            aria-label="toggle password visibility"
+                                            onClick={handleClickShowPassword}
+                                        >
+                                            {showPassword ? <VisibilityOffIcon /> : <Visibility />}
+                                        </IconButton>
+                                    </InputAdornment>
+                                )
+                            }}
+                        />
                         <Button sx={buttonStyle} onClick={handleSubmit} variant="contained" >Continuar</Button>
                     </Box>
                 </Box>

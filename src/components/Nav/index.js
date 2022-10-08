@@ -14,17 +14,19 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { LoginContext } from '../../contexts/loginContext';
+import { useNavigate } from 'react-router-dom';
 
 
 const pages = ['Loja', 'Como funciona', 'Login'];
 const settings = ['Meu Perfil', 'Logout'];
 
-const ResponsiveMenu = ({ handleClose }) => {
-    const { logged, setLogged } = React.useContext(LoginContext);
+
+const ResponsiveMenu = ({ handleCloseLogin, handleCloseRegister }) => {
+    const { logged, setLogged, name } = React.useContext(LoginContext);
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
     const [anchorElLogin, setAnchorElLogin] = React.useState(null);
-
+    const navigate = useNavigate();
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
@@ -38,6 +40,7 @@ const ResponsiveMenu = ({ handleClose }) => {
     const handleLogout = (setting) => {
         if (setting === 'Logout') {
             setLogged(false)
+            navigate('/')
         }
     }
     const handleCloseNavMenu = () => {
@@ -88,11 +91,11 @@ const ResponsiveMenu = ({ handleClose }) => {
                         >
                             {pages.map((page) => (
                                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography color={'primary'} onClick={() => handleClose(page)} textAlign="center" sx={{ fontWeight: '600', textTransform: 'uppercase' }}>{page}</Typography>
+                                    <Typography color={'primary'} onClick={() => handleCloseLogin(page)} textAlign="center" sx={{ fontWeight: '600', textTransform: 'uppercase' }}>{page}</Typography>
                                 </MenuItem>
                             ))}
                             <MenuItem>
-                                <Button sx={{ fontWeight: '600', backgroundColor: 'secondary.main' }}>Cadastre-se</Button>
+                                <Button onClick={(e) => handleCloseRegister(e)} sx={{ fontWeight: '600', backgroundColor: 'secondary.main' }}>Cadastre-se</Button>
                             </MenuItem>
                         </Menu>
                     </Box>
@@ -135,7 +138,7 @@ const ResponsiveMenu = ({ handleClose }) => {
                         {pages.map((page) => (
                             <Button
                                 key={page}
-                                onClick={handleClose}
+                                onClick={handleCloseLogin}
                                 sx={[{ my: 2, color: 'primary', display: 'block', fontWeight: '600' }, {
                                     '&:hover': {
                                         textDecoration: 'underline'
@@ -150,7 +153,7 @@ const ResponsiveMenu = ({ handleClose }) => {
                                 backgroundColor: 'header.main'
                             }
                         }]}>
-                            <Button sx={[{ backgroundColor: 'secondary.main', color: 'primary', fontWeight: '600', borderRadius: '30px', padding: '5px 50px' }, {
+                            <Button onClick={handleCloseRegister} sx={[{ backgroundColor: 'secondary.main', color: 'primary', fontWeight: '600', borderRadius: '30px', padding: '5px 50px' }, {
                                 '&:hover': {
                                     backgroundColor: 'primary.main',
                                     color: 'primary.light'
@@ -170,7 +173,7 @@ const ResponsiveMenu = ({ handleClose }) => {
                     <Box sx={{ flexGrow: 0, marginRight: { md: '210px' } }}>
                         {logged ? <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                                <Avatar alt={name} src="/static/images/avatar/2.jpg" />
                             </IconButton>
                         </Tooltip> : <Avatar onClick={handleOpenLoginMenu}><AccountCircleIcon /></Avatar>}
                         <Menu

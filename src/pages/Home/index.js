@@ -2,27 +2,21 @@ import { Box, Button, Divider, Typography } from '@mui/material';
 import React from 'react';
 import LoginModal from '../../components/Login';
 import ResponsiveMenu from '../../components/Nav';
-import Header from '../../components/Header';
+import Hero from '../../components/Hero';
 import CardInfo from '../../components/Card';
 import { useTheme } from '@mui/material';
 import FlexBox from '../../components/FlexBox';
 import ContactForm from '../../components/Contact';
 import SvgCiclico from '../../Images/components/Ciclico'
 import Footer from '../../components/Footer';
+import RegisterModal from '../../components/Register';
+import Header from '../../components/Header';
 const Home = () => {
-    const [open, setOpen] = React.useState(false)
-
-    const handleClose = (page) => {
-        if (page.target.innerText === 'Login') {
-            setOpen(!open)
-        }
-    }
 
     return (
         <div>
-            <ResponsiveMenu handleClose={handleClose} />
-            <LoginModal handleClose={handleClose} open={open} setOpen={setOpen} />
-            <Header></Header>
+            <Header />
+            <Hero />
             {/* CARDS INFORMATIVOS */}
             <FlexBox direction={{ md: 'row', xs: 'column' }} justify='space-around' padding={{ xs: 'auto', md: '210px' }}>
 
