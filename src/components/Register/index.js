@@ -68,6 +68,7 @@ const RegisterModal = (props) => {
             localStorage.setItem('email', email)
             localStorage.setItem('senha', senha)
             localStorage.setItem('categoria', categoria)
+            console.log(localStorage.getItem('email'))
             setOpen(!open)
         } else {
             alert("stop")
