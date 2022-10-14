@@ -150,7 +150,7 @@ const ResponsiveMenu = ({ handleCloseLogin, handleCloseRegister }) => {
                         ))}
                         <MenuItem sx={[{
                             '&:hover': {
-                                backgroundColor: 'header.main'
+                                backgroundColor: 'transparent'
                             }
                         }]}>
                             <Button onClick={handleCloseRegister} sx={[{ backgroundColor: 'secondary.main', color: 'primary', fontWeight: '600', borderRadius: '30px', padding: '5px 50px' }, {
@@ -191,11 +191,11 @@ const ResponsiveMenu = ({ handleCloseLogin, handleCloseRegister }) => {
                             onClose={handleCloseLoginMenu}
                             open={Boolean(anchorElLogin)}
                         >
-                            <MenuItem onClick={handleCloseNavMenu}>
+                            <MenuItem onClick={handleCloseLogin}>
                                 <Typography color={'primary'} textAlign="center" sx={{ fontWeight: '600' }}>Login</Typography>
                             </MenuItem>
-                            <MenuItem>
-                                <Button sx={{ fontWeight: '600', backgroundColor: 'secondary.main' }}>Cadastre-se</Button>
+                            <MenuItem onClick={handleCloseRegister}>
+                                <Button sx={{ fontWeight: '600', backgroundColor: 'secondary.main', }}>Cadastre-se</Button>
                             </MenuItem>
                         </Menu>
                         <Menu

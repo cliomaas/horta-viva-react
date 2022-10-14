@@ -1,4 +1,4 @@
-import { Box, Button, IconButton, InputAdornment, Modal, TextField, Typography } from '@mui/material';
+import { Alert, Box, Button, IconButton, InputAdornment, Modal, TextField, Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import React from 'react';
 import { LoginContext } from '../../contexts/loginContext';
@@ -8,26 +8,29 @@ import { useNavigate } from 'react-router-dom';
 
 const LoginModal = (props) => {
     const { open, setOpen } = props
+    const [errors, setErrors] = React.useState('');
+    const [categoria, setCategoria] = React.useState('');
     const [email, setEmail] = React.useState('')
     const [senha, setSenha] = React.useState('')
     const { setLogged } = React.useContext(LoginContext);
     const { showPassword, setShowPassword } = React.useContext(LoginContext);
     const navigate = useNavigate();
     const handleClickShowPassword = () => setShowPassword(!showPassword);
+
     const boxStyle = {
         position: 'absolute',
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        width: { xs: 'auto', md: 600 },
+        width: { xs: 360, md: 600 },
         bgcolor: 'background.paper',
         borderRadius: '40px',
         boxShadow: 2,
-        p: 4,
+        p: { xs: 2, md: 4 },
     };
 
     const boxFlexHorizontalStyle = {
-        mt: 2,
+        my: 2,
         display: 'flex',
         justifyContent: 'center',
         gap: 3
@@ -58,24 +61,77 @@ const LoginModal = (props) => {
         py: 2
     }
 
-    const handleSelect = (e) => {
-        e.target.style.backgroundColor = '#437346'
-        e.target.style.color = 'white'
-        const category = e.target.innerText
-        switch (category) {
-            case 'Sou Colaborador':
-                localStorage.setItem("category", "colaborador");
-                break;
-            case 'Sou Empresa':
-                localStorage.setItem("category", "empresa");
-                break;
-            case 'Sou Produtor':
-                localStorage.setItem("category", "produtor");
-                break;
-            default:
-                console.log("selecione")
-        }
+
+    const handleChange = (e) => {
+
+        setEmail(e.target.value);
     }
+
+    React.useEffect(() => {
+        const emailStorage = localStorage.getItem("email");
+        const categoriaStorage = localStorage.getItem("categoria");
+        if (email === emailStorage) {
+            setCategoria(categoriaStorage)
+        } else (
+            setCategoria('')
+        )
+    }, [email])
+
+    const handleSelect = React.useCallback((e) => {
+        switch (categoria) {
+            case ('colaborador'):
+                return <>
+                    <Button id="colaborador" onClick={e => alert(e.target.id)} variant='contained'>
+                        Sou Colaborador
+                    </Button>
+                    <Button id="empresa" onClick={e => handleSelect(e)} variant='outlined'>
+                        Sou Empresa
+                    </Button>
+                    <Button id="produtor" onClick={e => handleSelect(e)} variant='outlined'>
+                        Sou Produtor
+                    </Button></>;
+            case ('empresa'):
+                return <>
+                    <Button id="colaborador" onClick={e => alert(e.target.id)} variant='outlined'>
+                        Sou Colaborador
+                    </Button>
+                    <Button id="empresa" onClick={e => handleSelect(e)} variant='contained'>
+                        Sou Empresa
+                    </Button>
+                    <Button id="produtor" onClick={e => handleSelect(e)} variant='outlined'>
+                        Sou Produtor
+                    </Button>
+                </>;
+            case ('produtor'):
+                return <>
+                    <Button id="colaborador" onClick={e => alert(e.target.id)} variant='outlined'>
+                        Sou Colaborador
+                    </Button>
+                    <Button id="empresa" onClick={e => handleSelect(e)} variant='outlined'>
+                        Sou Empresa
+                    </Button>
+                    <Button id="produtor" onClick={e => handleSelect(e)} variant='contained'>
+                        Sou Produtor
+                    </Button>
+                </>;
+            default:
+                return <>
+                    <Button id="colaborador" onClick={e => alert(e.target.id)} variant='outlined'>
+                        Sou Colaborador
+                    </Button>
+                    <Button id="empresa" onClick={e => handleSelect(e)} variant='outlined'>
+                        Sou Empresa
+                    </Button>
+                    <Button id="produtor" onClick={e => handleSelect(e)} variant='outlined'>
+                        Sou Produtor
+                    </Button>
+                </>
+        }
+    }, [categoria])
+
+    React.useEffect(() => {
+        handleSelect();
+    }, [categoria, email, handleSelect])
 
     const handleButton = () => {
         setOpen(!open)
@@ -83,17 +139,17 @@ const LoginModal = (props) => {
     const handleSubmit = (e) => {
         const emailStorage = localStorage.getItem("email")
         const senhaStorage = localStorage.getItem("senha")
-        if (!email) {
-            alert('Preencha as informações corretamente')
+        if (!email || !senha) {
+            setErrors('Preencha as informações corretamente')
         } else {
             if (!emailStorage || email !== emailStorage) {
-                alert('Usuário não cadastrado')
+                setErrors('Usuário não cadastrado')
             }
             else if (email === emailStorage) {
                 if (senha !== senhaStorage) {
-                    alert('Usuário ou senha incorretos')
+                    setErrors('Email ou senha incorretos')
                 } else {
-                    alert('Usuário autenticado')
+                    setErrors('')
                     setLogged(true);
                     navigate('/perfil')
                     setOpen(!open)
@@ -114,6 +170,7 @@ const LoginModal = (props) => {
                 }}
             >
                 <Box sx={boxStyle}>
+                    <Alert sx={{ visibility: errors ? 'visible' : 'hidden', mb: 3, borderRadius: '40px' }} severity={errors.includes('incorretos') ? 'error' : 'warning'}>{errors}</Alert>
                     <CloseIcon onClick={handleButton} sx={{ cursor: 'pointer' }} />
                     <Typography sx={[titleStyle, { fontWeight: 400 }]} id="modal-modal-title" variant="h6" component="h3">
                         Login
@@ -122,21 +179,13 @@ const LoginModal = (props) => {
                         Que bom que você voltou!
                     </Typography>
                     <Box sx={boxFlexHorizontalStyle}>
-                        <Button onClick={e => handleSelect(e)} variant='outlined'>
-                            Sou Colaborador
-                        </Button>
-                        <Button onClick={e => handleSelect(e)} variant='outlined'>
-                            Sou Empresa
-                        </Button>
-                        <Button onClick={e => handleSelect(e)} variant='outlined'>
-                            Sou Produtor
-                        </Button>
+                        {handleSelect()}
                     </Box>
                     <Box sx={boxFlexVerticalStyle}>
-                        <TextField fullWidth={true} onChange={e => setEmail(e.target.value)} value={email} id="outlined-search" label="Email" type="email" />
+                        <TextField fullWidth={true} onChange={e => handleChange(e)} value={email} id="email" label="Email" type="email" />
                         <TextField
                             fullWidth={true}
-                            id="outlined-search"
+                            id="senha"
                             label='Senha'
                             type={showPassword ? "text" : "password"}
                             onChange={e => setSenha(e.target.value)}
