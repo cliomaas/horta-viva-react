@@ -16,12 +16,12 @@ const Home = () => {
             {/* CARDS INFORMATIVOS */}
             <FlexBox direction={{ md: 'row', xs: 'column' }} justify='space-around' padding={{ xs: 'auto', md: '210px' }}>
 
-                <CardInfo margin={{ xs: 80, md: 85 }} number='01'
+                <CardInfo number='01'
                     description="Cadastre-se em nossa plataforma e comece a desfrutar de nossos benefícios." />
-                <CardInfo margin={{ xs: 3, md: 85 }} number='02'
+                <CardInfo number='02'
                     description="Indique para seus colaboradores as melhores formas de consumo saudável e sustentável."
                 />
-                <CardInfo margin={{ xs: 3, md: 85 }} number='03'
+                <CardInfo number='03'
                     description="Ajude famílias produtoras de alimentos organicos promovendo consumo sustentável."
                 />
             </FlexBox>

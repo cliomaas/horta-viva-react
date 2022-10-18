@@ -9,8 +9,8 @@ const Hero = () => {
 
         boxStyle: {
             backgroundImage: `url(${Image})`,
-            position: 'absolute',
-            top: 0,
+            position: 'relative',
+            top: -70,
             zIndex: -1000,
             width: '100vw',
             height: 'auto',
@@ -21,6 +21,7 @@ const Hero = () => {
             pb: 8,
             px: { xs: '20px', md: '210px' },
             boxSizing: 'border-box',
+            marginBottom: -4
         },
         titleStyle: {
             fontWeight: 800,

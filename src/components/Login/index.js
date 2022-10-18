@@ -170,7 +170,7 @@ const LoginModal = (props) => {
                 }}
             >
                 <Box sx={boxStyle}>
-                    <Alert sx={{ visibility: errors ? 'visible' : 'hidden', mb: 3, borderRadius: '40px' }} severity={errors.includes('incorretos') ? 'error' : 'warning'}>{errors}</Alert>
+                    <Alert sx={{ display: errors ? 'flex' : 'none', mb: 3, borderRadius: '40px' }} severity={errors.includes('incorretos') ? 'error' : 'warning'}>{errors}</Alert>
                     <CloseIcon onClick={handleButton} sx={{ cursor: 'pointer' }} />
                     <Typography sx={[titleStyle, { fontWeight: 400 }]} id="modal-modal-title" variant="h6" component="h3">
                         Login
