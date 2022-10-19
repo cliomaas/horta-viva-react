@@ -19,11 +19,10 @@ const RegisterModal = (props) => {
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        width: { xs: 'auto', md: 600 },
-        bgcolor: 'background.paper',
+        backgroundColor: 'background.paper',
         borderRadius: '40px',
         boxShadow: 2,
-        p: 4,
+        p: { xs: 2, md: 4 },
     };
 
     const boxFlexVerticalStyle = {

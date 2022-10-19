@@ -22,8 +22,7 @@ const LoginModal = (props) => {
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        width: { xs: 360, md: 600 },
-        bgcolor: 'background.paper',
+        backgroundColor: 'background.paper',
         borderRadius: '40px',
         boxShadow: 2,
         p: { xs: 2, md: 4 },
@@ -32,6 +31,7 @@ const LoginModal = (props) => {
     const boxFlexHorizontalStyle = {
         my: 2,
         display: 'flex',
+        flexWrap: 'wrap',
         justifyContent: 'center',
         gap: 3
 
@@ -60,6 +60,9 @@ const LoginModal = (props) => {
         px: 3,
         py: 2
     }
+    const buttonFlexStyle = {
+        width: { xs: '100%', md: 'auto' }
+    }
 
 
     const handleChange = (e) => {
@@ -81,48 +84,48 @@ const LoginModal = (props) => {
         switch (categoria) {
             case ('colaborador'):
                 return <>
-                    <Button id="colaborador" onClick={e => alert(e.target.id)} variant='contained'>
+                    <Button sx={buttonFlexStyle} id="colaborador" variant='contained'>
                         Sou Colaborador
                     </Button>
-                    <Button id="empresa" onClick={e => handleSelect(e)} variant='outlined'>
+                    <Button sx={buttonFlexStyle} id="empresa" variant='outlined'>
                         Sou Empresa
                     </Button>
-                    <Button id="produtor" onClick={e => handleSelect(e)} variant='outlined'>
+                    <Button sx={buttonFlexStyle} id="produtor" variant='outlined'>
                         Sou Produtor
                     </Button></>;
             case ('empresa'):
                 return <>
-                    <Button id="colaborador" onClick={e => alert(e.target.id)} variant='outlined'>
+                    <Button sx={buttonFlexStyle} id="colaborador" variant='outlined'>
                         Sou Colaborador
                     </Button>
-                    <Button id="empresa" onClick={e => handleSelect(e)} variant='contained'>
+                    <Button sx={buttonFlexStyle} id="empresa" variant='contained'>
                         Sou Empresa
                     </Button>
-                    <Button id="produtor" onClick={e => handleSelect(e)} variant='outlined'>
+                    <Button sx={buttonFlexStyle} id="produtor" variant='outlined'>
                         Sou Produtor
                     </Button>
                 </>;
             case ('produtor'):
                 return <>
-                    <Button id="colaborador" onClick={e => alert(e.target.id)} variant='outlined'>
+                    <Button sx={buttonFlexStyle} id="colaborador" variant='outlined'>
                         Sou Colaborador
                     </Button>
-                    <Button id="empresa" onClick={e => handleSelect(e)} variant='outlined'>
+                    <Button sx={buttonFlexStyle} id="empresa" variant='outlined'>
                         Sou Empresa
                     </Button>
-                    <Button id="produtor" onClick={e => handleSelect(e)} variant='contained'>
+                    <Button sx={buttonFlexStyle} id="produtor" variant='contained'>
                         Sou Produtor
                     </Button>
                 </>;
             default:
                 return <>
-                    <Button id="colaborador" onClick={e => alert(e.target.id)} variant='outlined'>
+                    <Button sx={buttonFlexStyle} id="colaborador" variant='outlined'>
                         Sou Colaborador
                     </Button>
-                    <Button id="empresa" onClick={e => handleSelect(e)} variant='outlined'>
+                    <Button sx={buttonFlexStyle} id="empresa" variant='outlined'>
                         Sou Empresa
                     </Button>
-                    <Button id="produtor" onClick={e => handleSelect(e)} variant='outlined'>
+                    <Button sx={buttonFlexStyle} id="produtor" variant='outlined'>
                         Sou Produtor
                     </Button>
                 </>
