@@ -3,11 +3,11 @@ import React from "react";
 import { ReactComponent as Unchecked } from "../../Images/svg/Unchecked.svg"
 import { ReactComponent as Checked } from "../../Images/svg/Checked.svg"
 
-const Checkbox = ({ value, label, imagem, align }) => {
+const Checkbox = ({ value, label, imagem, align, fontSize, width, imgWidth, labelPlacement }) => {
 
     return (
-        <FormControlLabel sx={{ color: "primary.main", alignItems: align }} value={value} control={<Radio icon={<Unchecked width="50%" />}
-            checkedIcon={<Checked width="50%" />} />} label={imagem ? <img alt={imagem} src={require(`../../Images/${imagem}.png`)} /> : <Typography sx={{ fontWeight: 700, fontSize: "36px" }}>{label}</Typography>} />
+        <FormControlLabel sx={[{ color: "primary.main", alignItems: align }, { '& .MuiButtonBase-root': { p: "5px", justifyContent: "flex-end" } }]} value={value} control={<Radio icon={<Unchecked width={width} />}
+            checkedIcon={<Checked width={width} />} />} labelPlacement={labelPlacement} label={imagem ? <img alt={imagem} width={imgWidth} src={require(`../../Images/${imagem}.png`)} /> : <Typography sx={{ fontWeight: 700, fontSize: fontSize }}>{label}</Typography>} />
     );
 }
 
