@@ -146,9 +146,9 @@ const Store = ({ cart, setCart }) => {
                                 row
                                 sx={{ justifyContent: "space-between", flexWrap: "nowrap" }}
                             >
-                                <Checkbox width="50%" value="Individual" label="Individual" fontSize="20px" />
-                                <Checkbox width="50%" value="Casal" label="Casal" fontSize="20px" />
-                                <Checkbox width="50%" value="Família" label="Família" fontSize="20px" />
+                                <Checkbox width="50%" value="Individual" label="Individual" fontSize="14px" />
+                                <Checkbox width="50%" value="Casal" label="Casal" fontSize="14px" />
+                                <Checkbox width="50%" value="Família" label="Família" fontSize="14px" />
                             </RadioGroup>
                         </FormControl>
                     </FlexBox>

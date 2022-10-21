@@ -175,9 +175,9 @@ const ResponsiveMenu = ({ handleNavClick, handleCloseRegister }) => {
                     </Box>
 
                     {/* PROFILE */}
-                    <Box sx={{ flexGrow: 0, marginRight: { md: '210px' } }}>
+                    <Box sx={{ flexGrow: 0, marginRight: { xs: '10px', md: '210px' } }}>
                         {logged ? <Tooltip title="Open settings">
-                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                            <IconButton onClick={handleOpenUserMenu} sx={{ pr: 2 }}>
                                 <Avatar alt={name} src="/static/images/avatar/2.jpg" />
                             </IconButton>
                         </Tooltip> : <Avatar onClick={handleOpenLoginMenu}><AccountCircleIcon /></Avatar>}
