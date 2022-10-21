@@ -12,13 +12,10 @@ const Perfil = () => {
         switch (categoria) {
             case 'colaborador':
                 return <Colaborador />;
-                break;
             case 'empresa':
                 return <Empresa />;
-                break;
             case 'produtor':
                 return <Produtor />;
-                break;
             default:
                 return null;
         }

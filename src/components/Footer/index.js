@@ -1,4 +1,4 @@
-import { Button, Card, CardContent, Menu, MenuItem, TextField, Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 import FlexBox from "../FlexBox";
@@ -14,18 +14,15 @@ const Footer = () => {
         'Termos e condições de uso', 'Política de privacidade',
         'WhatsApp: (11)99999-9999', 'meajuda@hortaviva.com.br', 'Atendimento das 9h às 18h'
     ]
-    const [anchorElFale, setAnchorElFale] = React.useState(null);
-    const [anchorElMundo, setAnchorElMundo] = React.useState(null);
-    const [anchorElTransp, setAnchorElTransp] = React.useState(null);
     return (
         <>
-            <Box sx={{ display: { xs: 'none', md: 'flex' }, backgroundColor: 'primary.main', px: '210px', py: '35px', gap: { md: 5, xl: 30 } }}>
+            <Box sx={{ display: { xs: 'none', md: 'flex' }, justifyContent: 'center', backgroundColor: 'primary.main', px: '210px', py: '35px', gap: { md: 5, xl: 30 } }}>
                 <FlexBox direction="column" align="flex-start">
                     <Typography variant="h4" component="h5" align="left" color="white" sx={{ fontWeight: 700, mb: 2 }}>
                         HORTA-VIVA.
                     </Typography>
                     {areas.slice(0, 3).map((area) => (
-                        <Typography variant="h6" component="h6" align="left" color="white" sx={{ fontWeight: 500 }}>
+                        <Typography variant="h6" key={area} component="h6" align="left" color="white" sx={{ fontWeight: 500 }}>
                             {area}
                         </Typography>
                     ))}
@@ -36,7 +33,7 @@ const Footer = () => {
                             Vamos mudar o mundo?
                         </Typography>
                         {areas.slice(3, 6).map((area) => (
-                            <Typography variant="h6" component="h6" align="left" color="white" sx={{ fontWeight: 500 }}>
+                            <Typography key={area} variant="h6" component="h6" align="left" color="white" sx={{ fontWeight: 500 }}>
                                 {area}
                             </Typography>
                         ))}
@@ -58,7 +55,7 @@ const Footer = () => {
                             Transparência
                         </Typography>
                         {areas.slice(6, 8).map((area) => (
-                            <Typography variant="h6" component="h6" color="white" sx={{ fontWeight: 500 }}>
+                            <Typography key={area} variant="h6" component="h6" color="white" sx={{ fontWeight: 500 }}>
                                 {area}
                             </Typography>
                         ))}
@@ -68,7 +65,7 @@ const Footer = () => {
                             Fale com a gente
                         </Typography>
                         {areas.slice(8,).map((area) => (
-                            <Typography variant="h6" component="h6" align="left" color="white" sx={{ fontWeight: 500 }}>
+                            <Typography variant="h6" key={area} component="h6" align="left" color="white" sx={{ fontWeight: 500 }}>
                                 {area}
                             </Typography>
                         ))}

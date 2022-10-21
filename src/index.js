@@ -6,15 +6,18 @@ import reportWebVitals from './reportWebVitals';
 import { ThemeProvider } from '@mui/system';
 import { theme } from './theme';
 import { LoginProvider } from './contexts/loginContext';
+import { CartProvider } from './contexts/cartContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <LoginProvider>
-      <ThemeProvider theme={theme}>
-        <App />
-      </ThemeProvider>
-    </LoginProvider>
+    <CartProvider>
+      <LoginProvider>
+        <ThemeProvider theme={theme}>
+          <App />
+        </ThemeProvider>
+      </LoginProvider>
+    </CartProvider>
   </React.StrictMode>
 );
 

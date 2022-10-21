@@ -19,6 +19,7 @@ export const theme = createTheme({
             main: "#437346",
             light: "#D9F2D5",
             highlight: "#97BF95",
+            light_background: "rgba(10, 112, 20, 0.7)",
             transparency: "rgba(255, 255, 255, 0.9)"
         },
         secondary: {

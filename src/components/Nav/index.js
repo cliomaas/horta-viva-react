@@ -21,7 +21,7 @@ const pages = ['Loja', 'Como funciona', 'Login'];
 const settings = ['Meu Perfil', 'Logout'];
 
 
-const ResponsiveMenu = ({ handleCloseLogin, handleCloseRegister }) => {
+const ResponsiveMenu = ({ handleNavClick, handleCloseRegister }) => {
     const { logged, setLogged, name } = React.useContext(LoginContext);
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -41,6 +41,8 @@ const ResponsiveMenu = ({ handleCloseLogin, handleCloseRegister }) => {
         if (setting === 'Logout') {
             setLogged(false)
             navigate('/')
+        } else {
+            navigate('/perfil')
         }
     }
     const handleCloseNavMenu = () => {
@@ -57,7 +59,7 @@ const ResponsiveMenu = ({ handleCloseLogin, handleCloseRegister }) => {
 
     return (
         < AppBar position="static" color={'header'} >
-            <Container maxWidth="xl">
+            <Container maxWidth="xl" sx={{ padding: "0px !important" }}>
                 <Toolbar disableGutters>
                     {/* MENU MOBILE */}
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -91,7 +93,7 @@ const ResponsiveMenu = ({ handleCloseLogin, handleCloseRegister }) => {
                         >
                             {pages.map((page) => (
                                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography color={'primary'} onClick={handleCloseLogin} textAlign="center" sx={{ fontWeight: '600', textTransform: 'none' }}>{page}</Typography>
+                                    <Typography color={'primary'} onClick={handleNavClick} textAlign="center" sx={{ fontWeight: '600', textTransform: 'none' }}>{page}</Typography>
                                 </MenuItem>
                             ))}
                             <MenuItem>
@@ -134,25 +136,28 @@ const ResponsiveMenu = ({ handleCloseLogin, handleCloseRegister }) => {
                     >
                         HORTA-VIVA.
                     </Typography>
-                    <Box sx={[{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'center', }]}>
-                        {pages.map((page) => (
-                            <Button
-                                key={page}
-                                onClick={handleCloseLogin}
-                                sx={[{ my: 2, color: 'primary', display: 'block', fontWeight: '600' }, {
-                                    '&:hover': {
-                                        textDecoration: 'underline'
-                                    }
-                                }]}
-                            >
-                                {page}
-                            </Button>
-                        ))}
-                        <MenuItem sx={[{
-                            '&:hover': {
-                                backgroundColor: 'transparent'
-                            }
-                        }]}>
+                    <Box sx={[{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'center' }]}>
+                        {
+                            pages.map((page) => (
+                                <Button
+                                    key={page}
+                                    onClick={handleNavClick}
+                                    sx={[{ my: 2, color: 'primary', display: 'block', fontWeight: '600' }, {
+                                        '&:hover': {
+                                            textDecoration: 'underline'
+                                        }
+                                    }]}
+                                >
+                                    {page}
+                                </Button>
+                            ))
+                        }
+                        < MenuItem sx={
+                            [{
+                                '&:hover': {
+                                    backgroundColor: 'transparent'
+                                }
+                            }]} >
                             <Button onClick={handleCloseRegister} sx={[{ backgroundColor: 'secondary.main', color: 'primary', fontWeight: '600', borderRadius: '30px', padding: '5px 50px' }, {
                                 '&:hover': {
                                     backgroundColor: 'primary.main',
@@ -191,7 +196,7 @@ const ResponsiveMenu = ({ handleCloseLogin, handleCloseRegister }) => {
                             onClose={handleCloseLoginMenu}
                             open={Boolean(anchorElLogin)}
                         >
-                            <MenuItem onClick={handleCloseLogin}>
+                            <MenuItem onClick={handleNavClick}>
                                 <Typography color={'primary'} textAlign="center" sx={{ fontWeight: '600' }}>Login</Typography>
                             </MenuItem>
                             <MenuItem onClick={handleCloseRegister}>
@@ -222,7 +227,7 @@ const ResponsiveMenu = ({ handleCloseLogin, handleCloseRegister }) => {
                         </Menu>
                     </Box>
                 </Toolbar>
-            </Container>
+            </Container >
         </ AppBar >
     );
 };

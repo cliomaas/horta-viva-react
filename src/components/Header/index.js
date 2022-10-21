@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import LoginModal from "../Login";
 import ResponsiveMenu from "../Nav";
 import RegisterModal from "../Register";
@@ -6,8 +7,20 @@ import RegisterModal from "../Register";
 const Header = () => {
     const [open, setOpen] = React.useState(false)
     const [openRegister, setOpenRegister] = React.useState(false)
+    const navigate = useNavigate();
 
-    const handleCloseLogin = (page) => {
+    const handleNavClick = (page) => {
+        switch (page.target.innerText) {
+            case 'Login':
+                setOpen(!open);
+                break;
+            case 'Loja':
+                navigate('/loja');
+                break;
+            default:
+                return null;
+
+        }
         if (page.target.innerText === 'Login') {
             setOpen(!open)
         }
@@ -19,8 +32,8 @@ const Header = () => {
     }
     return (
         <>
-            <ResponsiveMenu handleCloseLogin={handleCloseLogin} handleCloseRegister={handleCloseRegister} />
-            <LoginModal handleClose={handleCloseLogin} open={open} setOpen={setOpen} />
+            <ResponsiveMenu handleNavClick={handleNavClick} handleCloseRegister={handleCloseRegister} />
+            <LoginModal handleClose={handleNavClick} open={open} setOpen={setOpen} />
             <RegisterModal handleClose={handleCloseRegister} open={openRegister} setOpen={setOpenRegister} />
         </>
     )

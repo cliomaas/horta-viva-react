@@ -130,6 +130,7 @@ const LoginModal = (props) => {
                     </Button>
                 </>
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [categoria])
 
     React.useEffect(() => {
