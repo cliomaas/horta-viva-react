@@ -15,9 +15,9 @@ const CardInfo = ({ number, title, description, margin }) => {
             boxShadow: 25,
             mb: 4,
             mx: 2,
-            width: { xd: 'auto', md: '450px' },
+            width: { xs: 'auto', md: '450px' },
             p: 5,
-            height: { xd: 'auto', md: '350px' }
+            height: { xs: 'auto', md: '350px' }
         }
     }
 
