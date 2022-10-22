@@ -160,7 +160,7 @@ const Store = ({ cart, setCart }) => {
                         <Typography variant="p" align="left" component="p" color="primary.highlight" sx={{ fontWeight: 700, py: 2, fontFamily: "Montserrat" }}>
                             Atenção: Devido à sazonalidade dos produtos, para chegar tudo fresquinho na sua mesa, nossas cestas são aleatórias, ok?
                         </Typography>
-                        <FlexBox direction="row">
+                        <FlexBox direction="row" wrap="nowrap">
                             <FormControl sx={{ width: '100vw', }}>
                                 <RadioGroup
                                     aria-labelledby="demo-radio-buttons-group-label"
