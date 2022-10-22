@@ -5,6 +5,7 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { Box } from "@mui/material";
 import CircleIcon from '@mui/icons-material/Circle';
 import { Circle } from "@mui/icons-material";
+import { useMediaQuery } from "../../hooks/useMediaQuery";
 
 
 const slideStyles = {
@@ -39,12 +40,12 @@ const leftArrowStyles = {
 const sliderStyles = {
     position: "relative",
     height: "477px",
-    paddingBottom: "80px"
 };
 
 const dotsContainerStyles = {
     display: "flex",
     justifyContent: "center",
+    paddingTop: "15px"
 };
 
 const dotStyle = {
@@ -75,14 +76,23 @@ const ImageSlider = () => {
         setCurrentIndex(slideIndex);
     };
 
+    const styles = {
+        container: isRowBased => ({
+            margin: "30px 30px 0px",
+            width: isRowBased ? '74%' : 'auto',
+        })
+    };
+
+    const isRowBased = useMediaQuery('(max-width: 1536px)');
+
     return (
-        <Box sx={[sliderStyles, { display: { xs: 'none', md: 'block' } }]}>
+        <Box sx={[sliderStyles, { display: { xs: 'none', md: 'block' }, paddingBottom: { md: 0, xl: "100px" } }]}>
             <div>
                 <ArrowBackIosIcon onClick={goToPrevious} sx={leftArrowStyles} />
 
                 <ArrowForwardIosIcon onClick={goToNext} style={rightArrowStyles} />
             </div>
-            <img src={require(`../../Images/${slides[currentIndex].url}.png`)} alt="carrossel" style={{ margin: "30px 30px 0px" }} />
+            <img src={require(`../../Images/${slides[currentIndex].url}.png`)} alt="carrossel" style={styles.container(isRowBased)} />
             <div style={dotsContainerStyles}>
                 {slides.map((slide, slideIndex) => (
                     slideIndex == currentIndex ? (<Circle
