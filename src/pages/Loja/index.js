@@ -17,10 +17,10 @@ const Loja = () => {
             <Header />
             <Paper square sx={{
                 backgroundColor: "primary.light_background", m: 0, position: 'relative',
-                top: -70,
+                top: -130,
                 zIndex: -1000,
-                pt: 12,
-                marginBottom: "-67px"
+                pt: 20,
+                marginBottom: "-130px"
             }}>
                 <Typography variant="h2" component="h1" color="white" sx={{ display: { xs: "none", md: "block" }, fontWeight: "700", textAlign: "left", pb: 5, ml: "210px" }}>
                     Produtos frescos e saudáveis

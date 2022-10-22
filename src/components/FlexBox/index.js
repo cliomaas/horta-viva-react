@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import React from "react";
 
 
-const FlexBox = ({ children, direction, justify, align, padding, pl, pr, pt, py, pb, background, gap, width, wrap }) => {
+const FlexBox = ({ children, direction, justify, align, padding, pl, pr, pt, py, pb, background, gap, width, wrap, mb }) => {
     const style = {
         display: 'flex',
         flexWrap: wrap,
@@ -18,6 +18,7 @@ const FlexBox = ({ children, direction, justify, align, padding, pl, pr, pt, py,
         pb: pb,
         gap: gap,
         width: width,
+        mb: mb
     }
     return (
         <Box sx={style}>

@@ -2,13 +2,14 @@ import React from "react";
 import { Box, Button, Divider, FormControl, FormLabel, Paper, RadioGroup, Typography } from "@mui/material";
 import FlexBox from "../FlexBox";
 import Checkbox from "../Checkbox";
+import { CartContext } from "../../contexts/cartContext";
 
 
 const Store = ({ cart, setCart }) => {
     const [tamanho, setTamanho] = React.useState("");
     const [calculo, setCalculo] = React.useState(false);
     const [tipo, setTipo] = React.useState("");
-
+    const { cartAdd, setCartAdd } = React.useContext(CartContext)
     const handleChangeTamanho = (event) => {
         setTamanho(event.target.value);
     }
@@ -27,6 +28,12 @@ const Store = ({ cart, setCart }) => {
     const handleClick = () => {
         if (cart.tamanho !== '' && cart.tipo !== '') {
             setCalculo(true)
+        }
+    }
+
+    const handleClickCart = () => {
+        if (cart.tamanho !== '' && cart.tipo !== '') {
+            setCartAdd(true)
         }
     }
     return (
@@ -118,7 +125,7 @@ const Store = ({ cart, setCart }) => {
                                     <Typography variant="p" color="secondary.main" sx={{ fontWeight: 700 }} component="h5">Desconto de R$9,00</Typography>
                                 </FlexBox>
                             </FlexBox>
-                            <Button variant='contained' sx={[{ margin: '0 auto', width: '30vw', boxShadow: 'none', backgroundColor: 'secondary.main', color: 'primary.main', fontWeight: '700', borderRadius: '30px', padding: '5px 50px', fontSize: 20 }, {
+                            <Button onClick={handleClickCart} variant='contained' sx={[{ margin: '0 auto', width: '30vw', boxShadow: 'none', backgroundColor: 'secondary.main', color: 'primary.main', fontWeight: '700', borderRadius: '30px', padding: '5px 50px', fontSize: 20 }, {
                                 '&:hover': {
                                     backgroundColor: 'primary.main',
                                     color: 'primary.light',
@@ -189,26 +196,26 @@ const Store = ({ cart, setCart }) => {
                             <Divider sx={{ borderBottomWidth: 6, borderColor: "primary.main", py: 3 }} />
                             <FlexBox direction="column">
                                 <FlexBox justify="space-between">
-                                    <Typography variant="h5" color="primary.main" sx={{ fontWeight: 700 }} component="h5">{cart.tamanho}</Typography>
-                                    <Typography variant="h5" color="primary.main" sx={{ fontWeight: 700 }} component="h5">R$ 59,00</Typography>
+                                    <Typography variant="h6" color="primary.main" sx={{ fontWeight: 700 }} component="h5">{cart.tamanho}</Typography>
+                                    <Typography variant="h6" color="primary.main" sx={{ fontWeight: 700 }} component="h5">R$ 59,00</Typography>
                                 </FlexBox>
                                 <FlexBox justify="space-between">
-                                    <Typography variant="h6" color="primary.main" sx={{ fontWeight: 500 }} component="h5">{cart.tipo}</Typography>
-                                    <Typography variant="h6" color="primary.main" sx={{ fontWeight: 500 }} component="h5">Frete R$ 15,00</Typography>
+                                    <Typography variant="p" color="primary.main" sx={{ fontWeight: 500, fontFamily: "Montserrat" }} component="h5">{cart.tipo}</Typography>
+                                    <Typography variant="p" color="primary.main" sx={{ fontWeight: 500, fontFamily: "Montserrat" }} component="h5">Frete R$ 15,00</Typography>
                                 </FlexBox>
                             </FlexBox>
                             <FlexBox direction="column" gap={5}>
                                 <Divider sx={{ borderBottomWidth: 3 }} />
                                 <FlexBox justify="space-between">
-                                    <Typography variant="h5" color="primary.main" sx={{ fontWeight: 700 }} component="h5">Total</Typography>
+                                    <Typography variant="h6" color="primary.main" sx={{ fontWeight: 700 }} component="h5">Total</Typography>
                                     <FlexBox direction="column" align="flex-end">
-                                        <Typography variant="h6" color="primary.main" sx={{ fontWeight: 500 }} component="h5">Unitário</Typography>
-                                        <Typography variant="h5" color="primary.main" sx={{ fontWeight: 700 }} component="h5">R$ 74,00</Typography>
+                                        <Typography variant="p" color="primary.main" sx={{ fontWeight: 500, fontFamily: "Montserrat" }} component="h5">Unitário</Typography>
+                                        <Typography variant="h6" color="primary.main" sx={{ fontWeight: 700 }} component="h5">R$ 74,00</Typography>
                                     </FlexBox>
                                     <FlexBox direction="column" align="flex-end">
-                                        <Typography variant="h6" color="primary.main" sx={{ fontWeight: 500 }} component="h5"> Mensal</Typography>
-                                        <Typography variant="h5" color="primary.main" sx={{ fontWeight: 700 }} component="h5">R$ 65,00</Typography>
-                                        <Typography variant="p" color="secondary.main" sx={{ fontWeight: 700 }} component="h5">Desconto de R$9,00</Typography>
+                                        <Typography variant="p" color="primary.main" sx={{ fontWeight: 500, fontFamily: "Montserrat" }} component="h5"> Mensal</Typography>
+                                        <Typography variant="h6" color="primary.main" sx={{ fontWeight: 700 }} component="h5">R$ 65,00</Typography>
+                                        <Typography variant="small" color="secondary.main" sx={{ fontWeight: 700, fontFamily: "Montserrat" }} component="h5">Desconto de R$9,00</Typography>
                                     </FlexBox>
                                 </FlexBox>
                             </FlexBox>

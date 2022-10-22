@@ -15,14 +15,17 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { LoginContext } from '../../contexts/loginContext';
 import { useNavigate } from 'react-router-dom';
-
+import { ReactComponent as FullCart } from '../../Images/svg/FullCart.svg'
+import { CartContext } from '../../contexts/cartContext';
 
 const pages = ['Loja', 'Como funciona', 'Login'];
 const settings = ['Meu Perfil', 'Logout'];
 
 
-const ResponsiveMenu = ({ handleNavClick, handleCloseRegister }) => {
+const ResponsiveMenu = ({ handleNavClick, handleCloseRegister, handleOpenCart }) => {
     const { logged, setLogged, name } = React.useContext(LoginContext);
+    const { cartAdd, setCartAdd } = React.useContext(CartContext);
+    const [carrinho, setCarrinho] = React.useState(false);
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
     const [anchorElLogin, setAnchorElLogin] = React.useState(null);
@@ -144,7 +147,8 @@ const ResponsiveMenu = ({ handleNavClick, handleCloseRegister }) => {
                                     onClick={handleNavClick}
                                     sx={[{ my: 2, color: 'primary', display: 'block', fontWeight: '600', fontSize: '20px' }, {
                                         '&:hover': {
-                                            textDecoration: 'underline'
+                                            textDecoration: 'underline',
+                                            backgroundColor: 'transparent'
                                         }
                                     }]}
                                 >
@@ -170,10 +174,9 @@ const ResponsiveMenu = ({ handleNavClick, handleCloseRegister }) => {
                                 backgroundColor: 'header.main'
                             }
                         }]}>
-                            <ShoppingCartOutlinedIcon color='primary' sx={{ fontSize: '50px' }} />
+                            {cartAdd ? <FullCart width="50px" onClick={handleOpenCart} /> : <ShoppingCartOutlinedIcon color='primary' sx={{ fontSize: '50px' }} />}
                         </MenuItem>
                     </Box>
-
                     {/* PROFILE */}
                     <Box sx={{ flexGrow: 0, marginRight: { xs: '10px', md: '210px' } }}>
                         {logged ? <Tooltip title="Open settings">
