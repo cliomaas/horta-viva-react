@@ -136,13 +136,13 @@ const ResponsiveMenu = ({ handleNavClick, handleCloseRegister }) => {
                     >
                         HORTA-VIVA.
                     </Typography>
-                    <Box sx={[{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'center' }]}>
+                    <Box sx={[{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, height: '130px', justifyContent: 'center' }]}>
                         {
                             pages.map((page) => (
                                 <Button
                                     key={page}
                                     onClick={handleNavClick}
-                                    sx={[{ my: 2, color: 'primary', display: 'block', fontWeight: '600' }, {
+                                    sx={[{ my: 2, color: 'primary', display: 'block', fontWeight: '600', fontSize: '20px' }, {
                                         '&:hover': {
                                             textDecoration: 'underline'
                                         }
@@ -158,7 +158,7 @@ const ResponsiveMenu = ({ handleNavClick, handleCloseRegister }) => {
                                     backgroundColor: 'transparent'
                                 }
                             }]} >
-                            <Button onClick={handleCloseRegister} sx={[{ backgroundColor: 'secondary.main', color: 'primary', fontWeight: '600', borderRadius: '30px', padding: '5px 50px' }, {
+                            <Button onClick={handleCloseRegister} sx={[{ fontSize: '20px', backgroundColor: 'secondary.main', color: 'primary', fontWeight: '600', borderRadius: '30px', padding: '5px 50px' }, {
                                 '&:hover': {
                                     backgroundColor: 'primary.main',
                                     color: 'primary.light'
@@ -170,17 +170,17 @@ const ResponsiveMenu = ({ handleNavClick, handleCloseRegister }) => {
                                 backgroundColor: 'header.main'
                             }
                         }]}>
-                            <ShoppingCartOutlinedIcon color='primary' />
+                            <ShoppingCartOutlinedIcon color='primary' sx={{ fontSize: '50px' }} />
                         </MenuItem>
                     </Box>
 
                     {/* PROFILE */}
                     <Box sx={{ flexGrow: 0, marginRight: { xs: '10px', md: '210px' } }}>
                         {logged ? <Tooltip title="Open settings">
-                            <IconButton onClick={handleOpenUserMenu} sx={{ pr: 2 }}>
-                                <Avatar alt={name} src="/static/images/avatar/2.jpg" />
+                            <IconButton sx={{ width: { xs: "45px", md: "65px" }, height: { xs: "45px", md: "65px" }, p: 2 }} onClick={handleOpenUserMenu}>
+                                <Avatar alt={name} sx={{ width: { xs: "40px", md: "60px" }, height: { xs: "40px", md: "60px" } }} src="/static/images/avatar/2.jpg" />
                             </IconButton>
-                        </Tooltip> : <Avatar onClick={handleOpenLoginMenu}><AccountCircleIcon /></Avatar>}
+                        </Tooltip> : <Avatar sx={{ width: { xs: "40px", md: "60px" }, height: { xs: "40px", md: "60px" } }} onClick={handleOpenLoginMenu}><AccountCircleIcon sx={{ fontSize: { xs: "1.5rem", md: "40px" } }} /></Avatar>}
                         <Menu
                             sx={{ mt: '45px' }}
                             anchorEl={anchorElLogin}

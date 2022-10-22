@@ -8,11 +8,12 @@ const ContactForm = () => {
     const [nameForm, setNameForm] = React.useState('')
     const [telForm, setTelForm] = React.useState('')
     return (
-        <Card variant="outlined" sx={{ border: '1px solid', borderColor: 'primary.main', borderRadius: '50px', p: 5 }}>
+        <Card variant="outlined" sx={{ border: '1px solid', borderColor: 'primary.main', borderRadius: '50px', p: { xs: 1, md: 5 } }}>
             <CardContent>
                 <Typography color='primary.main' sx={{
                     fontSize: { xs: '16px', md: '32px' },
-                    fontWeight: 500
+                    fontWeight: 500,
+                    pb: 3
                 }}>
                     Preencha os dados abaixo, vamos iniciar uma conversa com você por meio desses dados de contato.
                 </Typography>

@@ -10,18 +10,18 @@ const Hero = () => {
         boxStyle: {
             backgroundImage: `url(${Image})`,
             position: 'relative',
-            top: -70,
+            top: -130,
             zIndex: -1000,
             width: '100vw',
             height: 'auto',
             backgroundPosition: '0% 100%',
             backgroundSize: 'cover',
-            pt: 20,
+            pt: { xs: 20, md: 40 },
             backgroundRepeat: 'no-repeat',
             pb: 8,
             px: { xs: '20px', md: '210px' },
             boxSizing: 'border-box',
-            marginBottom: -4
+            marginBottom: -13
         },
         titleStyle: {
             fontWeight: 800,

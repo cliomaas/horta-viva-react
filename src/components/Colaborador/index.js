@@ -64,29 +64,29 @@ const Colaborador = () => {
                     </FlexBox>
                 </FlexBox>
                 <FlexBox direction='column' pt={4}>
-                    <Typography variant='h4' align="left" component='h4' color="primary.main" sx={{ fontWeight: 600 }}>
+                    <Typography variant='h4' align="left" component='h4' color="primary.main" sx={{ fontWeight: 600, pb: 3 }}>
                         Seus dados
                     </Typography>
                     <FlexBox wrap='wrap' gap={8}>
                         <FlexBox align='center'>
                             <SvgLocalizacao width={84} height={84} />
-                            <Typography sx={{ textDecoration: 'underline' }} variant='h6' color='primary.main' component='a'>30456-865</Typography>
+                            <Typography sx={{ textDecoration: 'underline', ml: 2 }} variant='h6' color='primary.main' component='a'>30456-865</Typography>
                         </FlexBox>
                         <FlexBox align='center'>
                             <SvgEscrita width={84} height={84} />
-                            <Typography sx={{ textDecoration: 'underline' }} variant='h6' color='primary.main' component='a'>Editar Cadastro</Typography>
+                            <Typography sx={{ textDecoration: 'underline', ml: 2 }} variant='h6' color='primary.main' component='a'>Editar Cadastro</Typography>
                         </FlexBox>
                         <FlexBox align='center'>
                             <SvgEstrela width={84} height={84} />
-                            <Typography sx={{ textDecoration: 'underline' }} variant='h6' color='primary.main' component='a'>Avaliações</Typography>
+                            <Typography sx={{ textDecoration: 'underline', ml: 2 }} variant='h6' color='primary.main' component='a'>Avaliações</Typography>
                         </FlexBox>
                         <FlexBox align='center'>
                             <SvgCoracao width={84} height={84} />
-                            <Typography sx={{ textDecoration: 'underline' }} variant='h6' color='primary.main' component='a'>Favoritos</Typography>
+                            <Typography sx={{ textDecoration: 'underline', ml: 2 }} variant='h6' color='primary.main' component='a'>Favoritos</Typography>
                         </FlexBox>
                         <FlexBox align='center'>
                             <SvgTelefone width={84} height={84} />
-                            <Typography sx={{ textDecoration: 'underline' }} variant='h6' color='primary.main' component='a'>Atendimento</Typography>
+                            <Typography sx={{ textDecoration: 'underline', ml: 2 }} variant='h6' color='primary.main' component='a'>Atendimento</Typography>
                         </FlexBox>
                     </FlexBox>
                 </FlexBox>
@@ -136,10 +136,10 @@ const Colaborador = () => {
                     </CardContent>
                 </Card>
                 <FlexBox direction='column' pt={4}>
-                    <Typography variant='h4' align="left" component='h4' color="primary.main" sx={{ fontWeight: 600 }}>
+                    <Typography variant='h5' align="left" component='h4' color="primary.main" sx={{ fontWeight: 700, pb: 3 }}>
                         Seus dados
                     </Typography>
-                    <FlexBox wrap='wrap' gap={3} pb={5}>
+                    <FlexBox wrap='wrap' gap={{ xs: "15px", md: 3 }} pb={5} justify={{ xs: 'center' }}>
                         <FlexBox align='center' gap={'3px'}>
                             <SvgLocalizacao width={30} height={30} />
                             <Typography sx={{ fontFamily: 'Montserrat', textDecoration: 'underline', fontWeight: 600 }} variant='p' color='primary.main' component='a'>30456-865</Typography>

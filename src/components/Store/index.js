@@ -132,7 +132,7 @@ const Store = ({ cart, setCart }) => {
                     ""}
             </Box >
             <Box sx={{ display: { xs: "flex", md: "none" }, flexDirection: "column", backgroundColor: "primary.light", py: 3, px: "10px" }}>
-                <FlexBox direction="column" py={10}>
+                <FlexBox direction="column" pb={10}>
                     <Typography variant="h5" component="h2" color="primary.main" sx={{ fontWeight: 700 }}>
                         Selecione o tamanho da sua cesta:
                     </Typography>
@@ -168,7 +168,7 @@ const Store = ({ cart, setCart }) => {
                                     onChange={handleChangeTipo}
                                     value={tipo}
                                     row
-                                    sx={{ justifyContent: "center" }}
+                                    sx={{ justifyContent: "center", flexWrap: "nowrap" }}
                                 >
                                     <Checkbox width="40%" labelPlacement="bottom" value="Frutas" imagem="frutas" imgWidth="83px" align="flex-start" />
                                     <Checkbox width="40%" labelPlacement="bottom" value="Legumes" imagem="legumes" imgWidth="83px" align="flex-start" />
