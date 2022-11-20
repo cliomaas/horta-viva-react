@@ -5,14 +5,20 @@ import { LoginContext } from '../../contexts/loginContext';
 import { Visibility } from '@mui/icons-material';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { useNavigate } from 'react-router-dom';
-
+import {
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    onAuthStateChanged,
+    signOut,
+} from "firebase/auth";
+import { auth } from "../../firebase-config";
 const LoginModal = (props) => {
     const { open, setOpen } = props
     const [errors, setErrors] = React.useState('');
     const [categoria, setCategoria] = React.useState('');
     const [email, setEmail] = React.useState('')
     const [senha, setSenha] = React.useState('')
-    const { setLogged } = React.useContext(LoginContext);
+    const { logged, setLogged } = React.useContext(LoginContext);
     const { showPassword, setShowPassword } = React.useContext(LoginContext);
     const navigate = useNavigate();
     const handleClickShowPassword = () => setShowPassword(!showPassword);
@@ -154,13 +160,25 @@ const LoginModal = (props) => {
                     setErrors('Email ou senha incorretos')
                 } else {
                     setErrors('')
-                    setLogged(true);
+                    // setLogged(true);
                     navigate('/perfil')
                     setOpen(!open)
                 }
             }
         }
     }
+    const login = async () => {
+        try {
+            const user = await signInWithEmailAndPassword(
+                auth,
+                email,
+                senha
+            );
+            console.log(user);
+        } catch (error) {
+            setErrors('Email ou senha incorretos')
+        }
+    };
 
     return (
         <>
@@ -208,7 +226,7 @@ const LoginModal = (props) => {
                                 )
                             }}
                         />
-                        <Button sx={buttonStyle} onClick={handleSubmit} variant="contained" >Continuar</Button>
+                        <Button sx={buttonStyle} onClick={login} variant="contained" >Continuar</Button>
                     </Box>
                 </Box>
             </Modal>

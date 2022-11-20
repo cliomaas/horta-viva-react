@@ -17,7 +17,10 @@ import { LoginContext } from '../../contexts/loginContext';
 import { useNavigate } from 'react-router-dom';
 import { ReactComponent as FullCart } from '../../Images/svg/FullCart.svg'
 import { CartContext } from '../../contexts/cartContext';
-
+import {
+    signOut,
+} from "firebase/auth";
+import { auth } from "../../firebase-config";
 const pages = ['Loja', 'Como funciona', 'Login'];
 const settings = ['Meu Perfil', 'Logout'];
 
@@ -42,7 +45,7 @@ const ResponsiveMenu = ({ handleNavClick, handleCloseRegister, handleOpenCart })
 
     const handleLogout = (setting) => {
         if (setting === 'Logout') {
-            setLogged(false)
+            signOut(auth);
             navigate('/')
         } else {
             navigate('/perfil')
@@ -179,7 +182,7 @@ const ResponsiveMenu = ({ handleNavClick, handleCloseRegister, handleOpenCart })
                     </Box>
                     {/* PROFILE */}
                     <Box sx={{ flexGrow: 0, marginRight: { xs: '10px', md: '210px' } }}>
-                        {logged ? <Tooltip title="Open settings">
+                        {logged != null ? <Tooltip title="Open settings">
                             <IconButton sx={{ width: { xs: "45px", md: "65px" }, height: { xs: "45px", md: "65px" }, p: 2 }} onClick={handleOpenUserMenu}>
                                 <Avatar alt={name} sx={{ width: { xs: "40px", md: "60px" }, height: { xs: "40px", md: "60px" } }} src="/static/images/avatar/2.jpg" />
                             </IconButton>

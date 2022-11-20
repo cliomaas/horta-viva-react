@@ -4,8 +4,14 @@ import React from 'react';
 import { LoginContext } from '../../contexts/loginContext';
 import { Visibility } from '@mui/icons-material';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-
+import {
+    createUserWithEmailAndPassword,
+    onAuthStateChanged,
+} from 'firebase/auth'
+import { auth } from '../../firebase-config'
 const RegisterModal = (props) => {
+
+
     const { open, setOpen } = props
     const [nome, setNome] = React.useState('')
     const [nascimento, setNascimento] = React.useState('')
@@ -13,6 +19,7 @@ const RegisterModal = (props) => {
     const [categoria, setCategoria] = React.useState('')
     const [email, setEmail] = React.useState('')
     const { showPassword, setShowPassword } = React.useContext(LoginContext);
+    const { logged, setLogged } = React.useContext(LoginContext);
     const handleClickShowPassword = () => setShowPassword(!showPassword);
     const boxStyle = {
         position: 'absolute',
@@ -52,14 +59,31 @@ const RegisterModal = (props) => {
     const handleButton = () => {
         setOpen(!open)
     }
+
+    const register = async () => {
+        try {
+            const user = await createUserWithEmailAndPassword(
+                auth,
+                email,
+                senha
+            );
+            console.log(user);
+        } catch (error) {
+            console.log(error.message)
+        }
+    }
+
+    onAuthStateChanged(auth, (currentUser) => {
+        setLogged(currentUser);
+    });
+
     const handleSubmit = (e) => {
         if (nome != '' & nascimento != '' & email != '' & categoria != '' & senha != '') {
             localStorage.setItem('nome', nome)
             localStorage.setItem('email', email)
             localStorage.setItem('senha', senha)
             localStorage.setItem('categoria', categoria)
-            alert(localStorage.getItem('email'))
-
+            register()
             setOpen(!open)
         } else {
             alert("stop")
