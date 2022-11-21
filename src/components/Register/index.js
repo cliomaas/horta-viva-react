@@ -73,6 +73,7 @@ const RegisterModal = (props) => {
 
 
     const boxStyle = {
+        width: { xs: '90%', md: '50%' },
         position: 'absolute',
         top: '50%',
         left: '50%',
@@ -81,6 +82,7 @@ const RegisterModal = (props) => {
         borderRadius: '40px',
         boxShadow: 2,
         p: { xs: 2, md: 4 },
+        overflowY: { xs: 'scroll', md: 'hidden' }
     };
 
     const boxFlexVerticalStyle = {
@@ -89,7 +91,7 @@ const RegisterModal = (props) => {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        gap: 3
+        gap: { xs: '10px', md: 3 }
 
     };
 
@@ -163,9 +165,6 @@ const RegisterModal = (props) => {
                 onClose={handleButton}
                 aria-labelledby="modal-login"
                 aria-describedby="modal-description"
-                sx={{
-                    mx: { xs: '30px' }
-                }}
             >
                 <Box sx={boxStyle}>
                     <Alert sx={{ display: emptyFields ? 'flex' : 'none', mb: 3, borderRadius: '40px' }} severity='error'>Preencha todos os campos</Alert>
