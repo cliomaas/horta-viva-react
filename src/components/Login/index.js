@@ -174,11 +174,17 @@ const LoginModal = (props) => {
                 email,
                 senha
             );
-            console.log(user);
+            setErrors('');
+            setLogged(true);
+            navigate('/perfil')
         } catch (error) {
             setErrors('Email ou senha incorretos')
         }
     };
+
+    onAuthStateChanged(auth, (currentUser) => {
+        // setLogged(currentUser);
+    });
 
     return (
         <>
