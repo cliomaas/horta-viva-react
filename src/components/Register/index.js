@@ -82,7 +82,8 @@ const RegisterModal = (props) => {
         borderRadius: '40px',
         boxShadow: 2,
         p: { xs: 2, md: 4 },
-        overflowY: { xs: 'scroll', md: 'hidden' }
+        overflowY: { xs: 'scroll', md: 'hidden' },
+        height: { xs: '70%' }
     };
 
     const boxFlexVerticalStyle = {
@@ -98,7 +99,8 @@ const RegisterModal = (props) => {
     const titleStyle = {
         fontWeight: 700,
         textAlign: 'center',
-        color: 'primary.main'
+        color: 'primary.main',
+        fontSize: { xs: '20px' }
     }
 
     const buttonStyle = {
@@ -165,10 +167,11 @@ const RegisterModal = (props) => {
                 onClose={handleButton}
                 aria-labelledby="modal-login"
                 aria-describedby="modal-description"
+                sx={{ overflow: 'overlay' }}
             >
                 <Box sx={boxStyle}>
                     <Alert sx={{ display: emptyFields ? 'flex' : 'none', mb: 3, borderRadius: '40px' }} severity='error'>Preencha todos os campos</Alert>
-                    <CloseIcon onClick={handleButton} sx={{ cursor: 'pointer' }} />
+                    <CloseIcon onClick={handleButton} sx={{ cursor: 'pointer', position: { xs: 'absolute' } }} />
                     <Typography sx={titleStyle} id="modal-modal-title" variant="h4" component="h3">
                         Complete seu cadastro:
                     </Typography>
@@ -228,7 +231,7 @@ const RegisterModal = (props) => {
                             />
                             <TextField
                                 error={errors.senha}
-                                helperText={errors.senha}
+                                helperText={errors.senha || "Senha deve conter no mínimo 6 caracteres, uma letra e um número."}
                                 fullWidth={true}
                                 id="outlined-search"
                                 label='Senha'
