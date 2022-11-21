@@ -79,7 +79,7 @@ const RegisterModal = (props) => {
         left: '50%',
         transform: 'translate(-50%, -50%)',
         backgroundColor: 'background.paper',
-        borderRadius: '40px',
+        borderRadius: { xs: '10px', md: '40px' },
         boxShadow: 2,
         p: { xs: 2, md: 4 },
         overflowY: { xs: 'scroll', md: 'hidden' },
@@ -148,6 +148,7 @@ const RegisterModal = (props) => {
                 localStorage.setItem('nome', values.nome)
                 localStorage.setItem('email', values.email)
                 localStorage.setItem('categoria', categoria)
+                alert('Cadastro realizado com sucesso!')
                 setOpen(!open);
                 resetForm();
                 setEmptyFields(false)
