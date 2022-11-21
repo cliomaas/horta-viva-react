@@ -83,7 +83,7 @@ const RegisterModal = (props) => {
         boxShadow: 2,
         p: { xs: 2, md: 4 },
         overflowY: { xs: 'scroll', md: 'hidden' },
-        height: { xs: '70%' }
+        height: { xs: '70%', md: 'auto' }
     };
 
     const boxFlexVerticalStyle = {
