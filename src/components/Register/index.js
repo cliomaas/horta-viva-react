@@ -26,34 +26,27 @@ const RegisterModal = (props) => {
 
     axios.defaults.baseURL = 'https://horta-viva-backend.herokuapp.com/';
     const { open, setOpen } = props
-    const [cpfInput, setCpfInput] = React.useState('');
     const [cpfValidate, setCpfValidate] = React.useState('')
     const [emptyFields, setEmptyFields] = React.useState(false)
     const [categoria, setCategoria] = React.useState('')
-    const [errorCpf, setErrorCpf] = React.useState({})
-
-
     const { showPassword, setShowPassword } = React.useContext(LoginContext);
     const handleClickShowPassword = () => setShowPassword(!showPassword);
 
 
 
     const validate = (fieldValues = values) => {
-        console.log(fieldValues)
+        let data = fieldValues.nascimento.replace(/\//g, "-");
+        let data_array = data.split("-");
         let temp = { ...errors }
-        if ('nome' in fieldValues) {
-            let nome = fieldValues.nome.trim();
-            temp.nome = nome == '' ? '' : (/^[a-zA-Z]{4,}(?: [a-zA-Z]+){1,5}$/).test(nome) ? "" : "Por favor, preencha seu nome completo."
-        } if ('email' in fieldValues)
-            temp.email = (/^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i).test(fieldValues.email) ? "" : "Email inválido."
-        if ('nascimento' in fieldValues) {
-            let data = fieldValues.nascimento.replace(/\//g, "-");
-            let data_array = data.split("-");
+        if ('nome' in fieldValues)
+            temp.nome = (/^[a-zA-Z]{4,}(?: [a-zA-Z]+){1,5}$/).test(fieldValues.nome) ? "" : "Por favor, preencha seu nome completo."
+        if ('email' in fieldValues)
+            temp.email = (/$^|.+@.+..+/).test(fieldValues.email) ? "" : "Email inválido."
+        if ('nascimento' in fieldValues)
             temp.nascimento = (parseInt(data_array) < 1900 || parseInt(data_array) > 2022) ? "Data inválida" : ""
+        if ('cpf' in fieldValues) {
+            temp.cpf = fieldValues.cpf == '' ? '' : cpfValidate == 'valido' ? "" : "CPF inválido."
         }
-        // if ('cpf' in fieldValues) {
-        //     temp.cpf = fieldValues.cpf == '' ? '' : cpfValidate == 'valido' ? "" : "CPF inválido."
-        // }
         if ('senha' in fieldValues)
             temp.senha = (/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/).test(fieldValues.senha) ? "" : fieldValues.senha == '' ? "" : "Senha deve conter no mínimo 6 caracteres, uma letra e um número."
         if ('senhaConfirma' in fieldValues)
@@ -66,7 +59,6 @@ const RegisterModal = (props) => {
         if (fieldValues == values)
             return Object.values(temp).every(x => x == "");
     }
-
     const {
         values,
         errors,
@@ -75,30 +67,9 @@ const RegisterModal = (props) => {
         resetForm
     } = useForm(valoresIniciais, true, validate, setEmptyFields);
 
-
-    const cpfValidateField = () => {
-        let temp = { ...errorCpf }
-        temp.cpf = cpfInput == '' ? '' : cpfValidate == 'valido' ? '' : 'CPF inválido.'
-        setErrorCpf({
-            ...temp
-        })
-    }
-
     React.useEffect(() => {
-        cpfValidateField();
-    },)
-
-    const handleCpfChange = e => {
-        console.log('valor', e.target.value)
-        setCpfInput(e.target.value);
-        console.log('cpf salvo', cpfInput)
-    }
-
-
-    React.useEffect(() => {
-        handleCpf(cpfInput)
-    }, [cpfInput])
-
+        handleCpf(values.cpf)
+    }, [values.cpf])
 
 
     const boxStyle = {
@@ -143,7 +114,6 @@ const RegisterModal = (props) => {
     const handleButton = () => {
         setOpen(!open)
         resetForm()
-        setCpfInput('')
     }
 
     const register = async () => {
@@ -161,9 +131,6 @@ const RegisterModal = (props) => {
 
 
     const handleCpf = (cpf) => {
-        cpf = cpf.replace(/\./g, '');
-        cpf = cpf.replace('-', '');
-        cpf = cpf.replace('/', '');
         axios.get('/cpf', {
             params: {
                 cpf: cpf
@@ -187,6 +154,7 @@ const RegisterModal = (props) => {
                 setEmptyFields(false)
             }
         } else {
+            console.log(values.nome, values.nascimento, values.email, categoria, values.senha, values.senhaConfirma)
             validate()
             setEmptyFields(true)
         }
@@ -251,11 +219,11 @@ const RegisterModal = (props) => {
                                 required
                             />
                             <TextField
-                                error={errorCpf.cpf}
-                                helperText={errorCpf.cpf}
+                                error={errors.cpf}
+                                helperText={errors.cpf}
                                 fullWidth={true}
-                                onChange={handleCpfChange}
-                                value={cpfInput}
+                                onChange={handleInputChange}
+                                value={values.cpf}
                                 id="outlined-search"
                                 label="CPF"
                                 name="cpf"

@@ -1,16 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
-export function useForm(initialFValues, validateOnChange = true, validate, setEmptyFields) {
+export function useForm(initialFValues, validateOnChange = false, validate, setEmptyFields) {
 
 
     const [values, setValues] = useState(initialFValues);
     const [errors, setErrors] = useState({});
-
-
-    useEffect(() => {
-        if (validateOnChange) { validate() }
-    }, [values, validate, validateOnChange])
-
 
     const handleInputChange = e => {
         const { name, value } = e.target
@@ -18,6 +12,8 @@ export function useForm(initialFValues, validateOnChange = true, validate, setEm
             ...values,
             [name]: value
         })
+        if (validateOnChange)
+            validate({ [name]: value })
     }
 
     const resetForm = () => {
