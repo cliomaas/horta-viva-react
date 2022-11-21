@@ -8,7 +8,6 @@ import { Visibility } from '@mui/icons-material';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import {
     createUserWithEmailAndPassword,
-    onAuthStateChanged,
 } from 'firebase/auth'
 import { auth } from '../../firebase-config'
 import axios from 'axios';
@@ -27,16 +26,10 @@ const RegisterModal = (props) => {
 
     axios.defaults.baseURL = 'https://horta-viva-backend.herokuapp.com/';
     const { open, setOpen } = props
-    const [cpf, setCpf] = React.useState('')
     const [cpfValidate, setCpfValidate] = React.useState('')
     const [emptyFields, setEmptyFields] = React.useState(false)
-    const [nascimento, setNascimento] = React.useState('')
-    const [senha, setSenha] = React.useState('')
     const [categoria, setCategoria] = React.useState('')
-    // const [email, setEmail] = React.useState('')
     const { showPassword, setShowPassword } = React.useContext(LoginContext);
-    const { logged, setLogged } = React.useContext(LoginContext);
-    const [infos, setInfos] = React.useState({})
     const handleClickShowPassword = () => setShowPassword(!showPassword);
 
 
@@ -46,17 +39,16 @@ const RegisterModal = (props) => {
         let data_array = data.split("-");
         let temp = { ...errors }
         if ('nome' in fieldValues)
-            temp.nome = fieldValues.nome ? "" : "Esse campo é obrigatório."
+            temp.nome = (/^[a-zA-Z]{4,}(?: [a-zA-Z]+){1,5}$/).test(fieldValues.nome) ? "" : "Por favor, preencha seu nome completo."
         if ('email' in fieldValues)
             temp.email = (/$^|.+@.+..+/).test(fieldValues.email) ? "" : "Email inválido."
         if ('nascimento' in fieldValues)
             temp.nascimento = (parseInt(data_array) < 1900 || parseInt(data_array) > 2022) ? "Data inválida" : ""
         if ('cpf' in fieldValues) {
-            console.log(cpf)
-            temp.cpf = cpf == 'valido' ? "" : "CPF inválido."
+            temp.cpf = fieldValues.cpf == '' ? '' : cpfValidate == 'valido' ? "" : "CPF inválido."
         }
         if ('senha' in fieldValues)
-            temp.senha = (/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/).test(fieldValues.senha) ? "" : "Senha deve conter no mínimo 6 caracteres, uma letra e um número."
+            temp.senha = (/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/).test(fieldValues.senha) ? "" : fieldValues.senha == '' ? "" : "Senha deve conter no mínimo 6 caracteres, uma letra e um número."
         if ('senhaConfirma' in fieldValues)
             temp.senhaConfirma = values.senha == values.senhaConfirma ? "" : "As senhas não conferem."
 
@@ -67,19 +59,18 @@ const RegisterModal = (props) => {
         if (fieldValues == values)
             return Object.values(temp).every(x => x == "");
     }
-
-    React.useEffect(() => {
-        setCpf(cpfValidate)
-    }, [cpfValidate])
-
     const {
         values,
-        setValues,
         errors,
         setErrors,
         handleInputChange,
         resetForm
-    } = useForm(valoresIniciais, true, validate);
+    } = useForm(valoresIniciais, true, validate, setEmptyFields);
+
+    React.useEffect(() => {
+        handleCpf(values.cpf)
+    }, [values.cpf])
+
 
     const boxStyle = {
         position: 'absolute',
@@ -118,6 +109,7 @@ const RegisterModal = (props) => {
 
     const handleButton = () => {
         setOpen(!open)
+        resetForm()
     }
 
     const register = async () => {
@@ -134,25 +126,18 @@ const RegisterModal = (props) => {
     }
 
 
-    // onAuthStateChanged(auth, (currentUser) => {
-    //     setLogged(currentUser);
-    // });
-
-
     const handleCpf = (cpf) => {
         axios.get('/cpf', {
             params: {
                 cpf: cpf
             }
-        }).then((response) => setCpfValidate(response.data.response))
-        // 
+        }).then(async (response) => await setCpfValidate(() => response.data.response))
     }
 
 
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        handleCpf(values.cpf)
         if (values.nome != '' & values.nascimento != '' & values.email != '' & categoria != '' & values.senha != '' & values.senhaConfirma != '') {
             if (validate()) {
                 register();
@@ -183,7 +168,7 @@ const RegisterModal = (props) => {
                 }}
             >
                 <Box sx={boxStyle}>
-                    <Alert sx={{ display: emptyFields ? 'flex' : 'none', mb: 3, borderRadius: '40px' }} severity='warning'>Preencha todos os campos</Alert>
+                    <Alert sx={{ display: emptyFields ? 'flex' : 'none', mb: 3, borderRadius: '40px' }} severity='error'>Preencha todos os campos</Alert>
                     <CloseIcon onClick={handleButton} sx={{ cursor: 'pointer' }} />
                     <Typography sx={titleStyle} id="modal-modal-title" variant="h4" component="h3">
                         Complete seu cadastro:

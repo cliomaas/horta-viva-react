@@ -6,10 +6,7 @@ import { Visibility } from '@mui/icons-material';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { useNavigate } from 'react-router-dom';
 import {
-    createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
-    onAuthStateChanged,
-    signOut,
 } from "firebase/auth";
 import { auth } from "../../firebase-config";
 const LoginModal = (props) => {
@@ -18,7 +15,7 @@ const LoginModal = (props) => {
     const [categoria, setCategoria] = React.useState('');
     const [email, setEmail] = React.useState('')
     const [senha, setSenha] = React.useState('')
-    const { logged, setLogged } = React.useContext(LoginContext);
+    const { setLogged } = React.useContext(LoginContext);
     const { showPassword, setShowPassword } = React.useContext(LoginContext);
     const navigate = useNavigate();
     const handleClickShowPassword = () => setShowPassword(!showPassword);
@@ -146,27 +143,7 @@ const LoginModal = (props) => {
     const handleButton = () => {
         setOpen(!open)
     }
-    const handleSubmit = (e) => {
-        const emailStorage = localStorage.getItem("email")
-        const senhaStorage = localStorage.getItem("senha")
-        if (!email || !senha) {
-            setErrors('Preencha as informações corretamente')
-        } else {
-            if (!emailStorage || email !== emailStorage) {
-                setErrors('Usuário não cadastrado')
-            }
-            else if (email === emailStorage) {
-                if (senha !== senhaStorage) {
-                    setErrors('Email ou senha incorretos')
-                } else {
-                    setErrors('')
-                    // setLogged(true);
-                    navigate('/perfil')
-                    setOpen(!open)
-                }
-            }
-        }
-    }
+
     const login = async () => {
         try {
             const user = await signInWithEmailAndPassword(
@@ -176,15 +153,16 @@ const LoginModal = (props) => {
             );
             setErrors('');
             setLogged(true);
+            setOpen(!open)
             navigate('/perfil')
         } catch (error) {
             setErrors('Email ou senha incorretos')
         }
     };
 
-    onAuthStateChanged(auth, (currentUser) => {
-        // setLogged(currentUser);
-    });
+    // onAuthStateChanged(auth, (currentUser) => {
+    //     // setLogged(currentUser);
+    // });
 
     return (
         <>

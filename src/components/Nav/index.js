@@ -27,8 +27,8 @@ const settings = ['Meu Perfil', 'Logout'];
 
 const ResponsiveMenu = ({ handleNavClick, handleCloseRegister, handleOpenCart }) => {
     const { logged, setLogged, name } = React.useContext(LoginContext);
-    const { cartAdd, setCartAdd } = React.useContext(CartContext);
-    const [carrinho, setCarrinho] = React.useState(false);
+    const { cartAdd } = React.useContext(CartContext);
+    // const [carrinho, setCarrinho] = React.useState(false);
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
     const [anchorElLogin, setAnchorElLogin] = React.useState(null);

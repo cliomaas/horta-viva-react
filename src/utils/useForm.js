@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 
-export function useForm(initialFValues, validateOnChange = false, validate) {
+export function useForm(initialFValues, validateOnChange = false, validate, setEmptyFields) {
 
 
     const [values, setValues] = useState(initialFValues);
@@ -19,6 +19,7 @@ export function useForm(initialFValues, validateOnChange = false, validate) {
     const resetForm = () => {
         setValues(initialFValues);
         setErrors({})
+        setEmptyFields(false)
     }
 
 
